@@ -10,6 +10,7 @@ import './index.css';
 import App from './App';
 import BranchList from './routes/branches';
 import BranchDetail from './routes/branchDetail';
+import CommitDetail from './routes/commitDetail';
 // import reportWebVitals from './reportWebVitals';
 
 const rootElement = document.getElementById("root");
@@ -17,9 +18,11 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
-      <Route path="heads" element={<BranchList />} >
+      <Route path="/heads" element={<BranchList />} >
         <Route path=":branch" element={<BranchDetail />} />
       </Route>
+      <Route path="/commits/:commit" element={<CommitDetail />} />
+      <Route path="/pr" element={<App />} />
       <Route path="*" element={<App />}
     />
     </Routes>

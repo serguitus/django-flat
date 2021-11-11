@@ -17,6 +17,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <p>the current repo is: {repo} </p>
         <Link to="/heads">Branches</Link>
+        <Link to="/pr">Pull Requests</Link>
       </header>
     </div>
   );

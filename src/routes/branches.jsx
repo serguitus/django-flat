@@ -9,7 +9,7 @@ const BranchList = () => {
         fetch("/branches").then(res =>res.json()).then(data => {
           setBranches(data.branches);
         });
-      })
+      }, [])
 
     return (
         <div className="mt-2">

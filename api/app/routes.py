@@ -28,12 +28,25 @@ def get_branches():
 @app.route('/commits/<branch>')
 def get_commits(branch):
     repo = Repo(repo_route)
-    selected_branch = repo.heads[branch]
     commits = list(repo.iter_commits(branch, max_count=50))
     return {'commits': [{
+        'id': commit.hexsha,
         'message': commit.message,
         'author': commit.author.name,
-        'date': commit.authored_date} for commit in commits]}
+        'date': time.strftime("%a, %d %b %Y %H:%M", time.gmtime(commit.authored_date))} for commit in commits]}
+
+
+@app.route('/commit/<commitId>')
+def get_commit_by_id(commitId):
+    repo = Repo(repo_route)
+    #selected_branch = repo.heads[branch]
+    commit = repo.commit(commitId)
+    return {'commit': {
+        'id': commit.hexsha,
+        'message': commit.message,
+        'author_name': commit.author.name,
+        'author_email': commit.author.email,
+        'date': time.strftime("%a, %d %b %Y %H:%M", time.gmtime(commit.authored_date))}}
 
 
 @app.route('/pr/create', methods=['POST'])
