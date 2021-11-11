@@ -9,7 +9,8 @@ from app.forms import PrForm
 from app.models import PR
 
 
-repo_route = app.config['REPO_PATH']#'/home/sergio/technical_interviews/flat.mx/react-flask-app/'
+repo_route = app.config['REPO_PATH']
+
 
 @app.route('/')
 @app.route('/repo')
@@ -17,10 +18,23 @@ def get_repo():
     repo = Repo(repo_route)
     return {'repo': repo._working_tree_dir}
 
+
 @app.route('/branches')
 def get_branches():
     repo = Repo(repo_route)
     return {'branches': [br.name for br in repo.heads]}
+
+
+@app.route('/commits/<branch>')
+def get_commits(branch):
+    repo = Repo(repo_route)
+    selected_branch = repo.heads[branch]
+    commits = list(repo.iter_commits(branch, max_count=50))
+    return {'commits': [{
+        'message': commit.message,
+        'author': commit.author.name,
+        'date': commit.authored_date} for commit in commits]}
+
 
 @app.route('/pr/create', methods=['POST'])
 def create_pr():
@@ -34,6 +48,6 @@ def create_pr():
             compare_branch=form.compare_branch.data)
         db.session.add(pr)
         db.session.commit()
-        print(pr)
+        # print(pr)
         return 'OK'
     return {'error': True}
