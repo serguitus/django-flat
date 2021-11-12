@@ -34,7 +34,7 @@ You will need two terminals for running back and front respectively.
 Open the first one, go to the root dir of the project and type
 
 ```
-> npm start-api
+> npm run start-api
 ```
 
 Open a second one, also at the root dir run
@@ -44,6 +44,21 @@ Open a second one, also at the root dir run
 ```
 That's it! You should be able to access localhost:3000 and visit the available views:
 - list branches
+- view branch details
+- view commit details
+- list PRs
+- add PR
+
+## Known issues:
+
+- There are failures in the merge action. It needs to be fixed
+- there is a message variable in component state to visualize errors in merge but it is not used as the merge process is incomplete
+- there are no styles at all (left intentionally as other requirements were pending)
+- I had no time to work on tests
+- there is an issue with saving the PR state to DB (the value passed does not correspond with the defined Enum)
+
+Thanks for your time :)
+
 # fullstack-interview-test
 Interview test for fullstack Software Engineers
 
