@@ -22,6 +22,7 @@ import React, { useState, useEffect } from 'react';
         setBranches(data.branches);
         setBaseBranch(data.branches[0]);
         setCompareBranch(data.branches[0]);
+        setStatus(1);
       });
     }, [])
 
@@ -42,6 +43,7 @@ import React, { useState, useEffect } from 'react';
         if (data){
           setMessage("PR created!");
         } else {
+          setError(true);
           setMessage("something went wrong");
         }
       });
