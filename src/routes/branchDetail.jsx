@@ -11,7 +11,7 @@ const BranchDetail = (props) => {
         fetch(`/commits/${params.branch}`).then(res =>res.json()).then(data => {
           setCommits(data.commits);
         });
-      })
+      }, [])
 
     return (
         <div className="mt-2 ml-2">

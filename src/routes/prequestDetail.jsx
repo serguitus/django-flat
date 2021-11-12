@@ -19,7 +19,7 @@ const PRequestDetail = (props) => {
           <h3>Description: {pullRequest.description}</h3>
           <h4>Author: {pullRequest.author}</h4>
           <h4>Status: {pullRequest.status}</h4>
-          <button onClick={MergePullRequest}> Merge </button>
+          <button onClick={MergePullRequest}> Merge</button>
           <Link to='/pr'>Back to List</Link>
         </div>
         )

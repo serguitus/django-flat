@@ -76,9 +76,17 @@ def get_pr_by_id(pr_id):
 # PR list
 @app.route('/pullrequests', methods=['POST', 'GET'])
 def pullRequest():
-    print(request.get_json())
+    # This should be moved to a controller...
     repo = Repo(repo_route)
     form = PrForm()
+
+    # if form.is_submitted():
+    #     print("submitted")
+
+    # if form.validate():
+    #     print("valid")
+
+    # print(form.errors)
 
     if form.validate_on_submit():
         print('aqui tambien...')
@@ -105,3 +113,19 @@ def pullRequest():
             "compareBranch": pr.compare_branch
             } for pr in pullrequests]
         }
+
+# merge two branches
+@app.route('/merge/<base>/<compare>', methods=['POST'])
+def merge(base, compare):
+    repo = Repo(repo_route)
+    base_branch = repo.branches[base]
+    compare_branch = repo.branches[compare]
+    base_commit = repo.merge_base(base_branch, compare_branch)
+    repo.index.merge_tree(compare_branch, base=base_commit)
+    repo.index.commit(
+        'Merge compare into base_branch',
+        parent_commits=(base_branch.commit, compare_branch.commit)
+    )
+    base_branch.checkout(force=True)
+
+

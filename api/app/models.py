@@ -1,12 +1,13 @@
 import enum
 
 from app import db
+from app.constants import PrStatus
 
 
-class PrStatus(enum.Enum):
-    OPEN = "Open"
-    CLOSED = "Closed"
-    MERGED = "Merged"
+# class PrStatus(enum.Enum):
+#     OPEN = "Open"
+#     CLOSED = "Closed"
+#     MERGED = "Merged"
 
 class PR(db.Model):
     id = db.Column(db.Integer, primary_key=True)
