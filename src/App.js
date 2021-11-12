@@ -5,10 +5,12 @@ import { Link } from 'react-router-dom';
 
 function App() {
   const [ repo, setRepo ] = useState(0);
+  const [ author, setAuthor ] = useState(0);
 
   useEffect(() => {
     fetch("/repo").then(res =>res.json()).then(data => {
       setRepo(data.repo);
+      setAuthor(data.author);
     });
   })
   return (
@@ -16,8 +18,10 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>the current repo is: {repo} </p>
+        <p>active committer is: {author} </p>
         <Link to="/heads">Branches</Link>
-        <Link to="/pr">Pull Requests</Link>
+        <Link to="/pr">View Pull Requests</Link>
+        <Link to="/pr/add">Add Pull Requests</Link>
       </header>
     </div>
   );

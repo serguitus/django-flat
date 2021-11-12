@@ -11,6 +11,9 @@ import App from './App';
 import BranchList from './routes/branches';
 import BranchDetail from './routes/branchDetail';
 import CommitDetail from './routes/commitDetail';
+import PrList from './routes/prequests';
+import PrForm from './routes/prequestForm';
+import PRequestDetail from './routes/prequestDetail';
 // import reportWebVitals from './reportWebVitals';
 
 const rootElement = document.getElementById("root");
@@ -22,7 +25,9 @@ render(
         <Route path=":branch" element={<BranchDetail />} />
       </Route>
       <Route path="/commits/:commit" element={<CommitDetail />} />
-      <Route path="/pr" element={<App />} />
+      <Route path="/pr/add" element={<PrForm />} />
+      <Route path="/pr/:id" element={<PRequestDetail />} />
+      <Route path="/pr" element={<PrList />} />
       <Route path="*" element={<App />}
     />
     </Routes>

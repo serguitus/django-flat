@@ -11,5 +11,6 @@ class PrForm(FlaskForm):
     description = StringField('Description')
     base_branch = StringField('Merge branch', validators=[DataRequired()])
     compare_branch = StringField('Into branch', validators=[DataRequired()])
+    status = StringField('Status', validators=[DataRequired()])
 
     # add some validators here...
