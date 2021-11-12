@@ -26,7 +26,7 @@ const PRequestDetail = (props) => {
 }
 
 const MergePullRequest = pr => {
-    console.log('anda que lindo!');
+    // repeat merge action here
 }
 
 export default PRequestDetail;

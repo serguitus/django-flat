@@ -56,7 +56,6 @@ import React, { useState, useEffect } from 'react';
         body: {}
       };
       fetch(`/merge/${baseBranch}/${compareBranch}`, requestOptions).then(res => res.json()).then(data => {
-        console.log(data);
       })
     }
 

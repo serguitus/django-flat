@@ -17,7 +17,17 @@ To execute the project locally please take the steps bellow:
 
 > pip install -r requirements.txt
 
+> flask db upgrade
+
+
 ```
+
+you need also to set the git repo address at the config file. visit app/config.py and search for
+
+``` REPO_PATH=os.environ.get('REPO_PATH') or '/home/sergio/technical_interviews/flat.mx/django-flat/' ```
+
+update the route accordingly or add an environment variable with the route of your repo
+
 so far apps are installed. let's run them.... fingers crossed :)
 
 You will need two terminals for running back and front respectively.
@@ -26,6 +36,14 @@ Open the first one, go to the root dir of the project and type
 ```
 > npm start-api
 ```
+
+Open a second one, also at the root dir run
+
+```
+> npm start
+```
+That's it! You should be able to access localhost:3000 and visit the available views:
+- list branches
 # fullstack-interview-test
 Interview test for fullstack Software Engineers
 

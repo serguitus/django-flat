@@ -11,7 +11,6 @@ const CommitDetail = (props) => {
         fetch(`/commit/${params.commit}`).then(res =>res.json()).then(data => {
           setCommit(data.commit);
         });
-        //console.log(commit);
       }, [])
 
     return (

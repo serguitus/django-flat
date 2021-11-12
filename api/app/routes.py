@@ -80,16 +80,7 @@ def pullRequest():
     repo = Repo(repo_route)
     form = PrForm()
 
-    # if form.is_submitted():
-    #     print("submitted")
-
-    # if form.validate():
-    #     print("valid")
-
-    # print(form.errors)
-
     if form.validate_on_submit():
-        print('aqui tambien...')
         pr = PR(
             title=form.title.data,
             description=form.description.data,
@@ -98,7 +89,6 @@ def pullRequest():
             author=repo.config_reader().get_value("user", "email"))
         db.session.add(pr)
         db.session.commit()
-        # print(pr)
         return 'OK'
     # it's a GET. get PR in db
     pullrequests = PR.query.all()
